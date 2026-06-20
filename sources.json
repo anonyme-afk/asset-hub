@@ -39,6 +39,79 @@
       "commercial_use": false,
       "attribution_required": true,
       "notes": "Nouvelle bibliothèque officielle Khronos de modèles 3D glTF. Toujours vérifier la sous-licence par dossier."
+    },
+    {
+      "id": "pmndrs-market",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "pmndrs",
+      "repo": "market-assets",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Modèles 3D CC0 utilisés par la communauté Poimandres/React Three Fiber."
+    },
+    {
+      "id": "threejs-examples",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "mrdoob",
+      "repo": "three.js",
+      "license": "MIT",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Assets variés (modèles, textures, hdr) utilisés dans les exemples de Three.js."
+    },
+    {
+      "id": "babylonjs-assets",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "BabylonJS",
+      "repo": "Assets",
+      "license": "Apache-2.0 / CC0",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Grande bibliothèque d'assets (modèles, textures environnement) de la team Babylon.js."
+    },
+    {
+      "id": "pokeapi-sprites",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "PokeAPI",
+      "repo": "sprites",
+      "license": "Fair Use / Nintendo",
+      "commercial_use": false,
+      "attribution_required": true,
+      "notes": "Tous les sprites de Pokémon. Usage non commercial uniquement (propriété de Nintendo)."
+    },
+    {
+      "id": "minecraft-assets",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "InventivetalentDev",
+      "repo": "minecraft-assets",
+      "license": "Mojang EULA",
+      "commercial_use": false,
+      "attribution_required": true,
+      "notes": "Assets officiels de Minecraft. Réservé à un usage personnel ou en conformité avec l'EULA Mojang."
+    },
+    {
+      "id": "unsplash",
+      "type": "unsplash",
+      "enabled": false,
+      "license": "Unsplash License",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Photos et textures (haute qualite). Necessite UNSPLASH_ACCESS_KEY dans l'environnement."
+    },
+    {
+      "id": "freesound",
+      "type": "freesound",
+      "enabled": false,
+      "license": "Variable (CC0 / CC-BY / CC-NC)",
+      "commercial_use": false,
+      "attribution_required": true,
+      "notes": "Sons et bruitages. Necessite FREESOUND_API_KEY dans l'environnement."
     }
   ]
 }

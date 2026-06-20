@@ -18,12 +18,17 @@ au reste.
 |---|---|---|---|
 | [ambientCG](https://ambientcg.com) | API REST | CC0 | ✅ libre |
 | [Poly Haven](https://polyhaven.com) | API REST | CC0 | ✅ libre |
-| [glTF-Sample-Models](https://github.com/KhronosGroup/glTF-Sample-Models) | repo GitHub | variable selon le modèle | ⚠️ à vérifier par modèle |
-| [glTF-Sample-Assets](https://github.com/KhronosGroup/glTF-Sample-Assets) | repo GitHub | variable selon le modèle | ⚠️ à vérifier par modèle |
+| [pmndrs/market-assets](https://github.com/pmndrs/market-assets) | repo GitHub | CC0 | ✅ libre |
+| [mrdoob/three.js](https://github.com/mrdoob/three.js) | repo GitHub | MIT | ✅ libre |
+| [BabylonJS/Assets](https://github.com/BabylonJS/Assets) | repo GitHub | Apache/CC0 | ✅ libre |
+| [PokeAPI/sprites](https://github.com/PokeAPI/sprites) | repo GitHub | Fair Use | ❌ usage personnel |
+| [InventivetalentDev/minecraft-assets](https://github.com/InventivetalentDev/minecraft-assets) | repo GitHub | Mojang EULA | ❌ usage personnel |
+| [glTF-Sample-Models](https://github.com/KhronosGroup/glTF-Sample-Models) | repo GitHub | variable | ⚠️ vérifier par modèle |
+| [glTF-Sample-Assets](https://github.com/KhronosGroup/glTF-Sample-Assets) | repo GitHub | variable | ⚠️ vérifier par modèle |
+| [Unsplash](https://unsplash.com) | API REST | Unsplash | ✅ libre *(Nécessite API KEY)* |
+| [Freesound](https://freesound.org) | API REST | Variable (CC0/CC-BY/NC) | ⚠️ vérifier *(Nécessite API KEY)* |
 
-D'autres sources candidates existent (Kenney, Freesound, Sketchfab...) mais
-leur statut d'API actuel n'a pas été vérifié — ne pas les brancher sans
-confirmer d'abord (endpoint, rate limits, licence réelle des fichiers).
+Grâce à `GithubRepoConnector`, tu peux brancher **n'importe quel repo public** en ajoutant simplement 1 ligne dans le fichier `sources.json`. De plus, Unsplash et Freesound sont pré-câblés et peuvent être activés en fournissant leurs clés API dans `.env` et en passant leur `enabled: true`.
 
 ## État réel du code (honnêteté > optimisme)
 
