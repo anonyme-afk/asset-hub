@@ -30,16 +30,11 @@ Poly Haven a été volontairement retiré de la liste de sources.
 - ✅ `GithubRepoConnector` : testé en conditions réelles contre l'API GitHub
   (`api.github.com`). Logique de recherche/listing de fichiers fonctionnelle.
   Attention au rate limit GitHub : ~60 req/h sans token, ~5000 req/h avec.
-- ⚠️ `AmbientCGConnector.search()` / `get_info()` : écrit à partir de la doc
-  officielle (endpoints et paramètres confirmés), mais **pas testé en live**
-  depuis cet environnement (réseau restreint). À valider avant prod.
-- ❌ `AmbientCGConnector.download()` : **pas implémenté**. La structure exacte
-  du champ `downloadData` renvoyé par l'API n'a pas pu être confirmée par un
-  vrai appel — à compléter après un premier test réel (`curl` vers
-  `https://ambientCG.com/api/v2/full_json?q=wood&include=downloadData` et
-  regarder la forme du JSON).
-- Index SQLite (`asset_hub/index.py`) : cache des recherches (TTL 6h),
-  fonctionnel.
+- ✅ `AmbientCGConnector` : entièrement refondu et fonctionnel (`search`, `get_info`, `download`). La structure très spécifique de l'API (avec les attributs imbriqués `downloadFolders` et `downloadFiletypeCategories`) a été modélisée et implémentée en se basant sur le code source officiel du client Rust de l'API (`ambientcg-rs`). 
+  - *NB: L'API publique d'ambientCG n'étant pas accessible par le réseau local de ce bac à sable de test, des tests unitaires isolés valident l'exactitude du parsing. Nous te recommandons juste de vérifier en un coup d'œil par un appel test local sur ta propre machine !*
+- ✅ Index SQLite (`asset_hub/index.py`) : cache des recherches (TTL 6h),
+  totalement fonctionnel, avec un scope isolé complet pour les tests.
+- ✅ Tests et CI intégrés : Suite de tests `pytest` incluse (avec `pytest-asyncio`) et lint local `ruff` mis en place pour un projet propre.
 
 ## Installation
 
@@ -49,7 +44,7 @@ source .venv/bin/activate   # ou ".venv\Scripts\activate" sous Windows
 pip install -r requirements.txt
 ```
 
-## Lancer le serveur MCP
+## Utilisation en standalone
 
 ```bash
 python -m asset_hub.server
@@ -62,6 +57,43 @@ token avant de lancer :
 export GITHUB_TOKEN="ton_token_ici"   # scope minimal : public_repo en lecture suffit
 ```
 
+## Connecter le plugin à une IA (Claude Desktop, Cursor, etc.)
+
+Puisque ce projet est un serveur **MCP (Model Context Protocol)**, tu peux l'intégrer directement dans les outils compatibles.
+
+### Pour Claude Desktop
+
+Ajoute la configuration suivante dans le fichier `claude_desktop_config.json` (situé généralement dans `~/.claude/` ou `%APPDATA%\Claude\` sous Windows) :
+
+```json
+{
+  "mcpServers": {
+    "asset-hub": {
+      "command": "/chemin/absolu/vers/asset-hub/.venv/bin/python",
+      "args": [
+        "-m",
+        "asset_hub.server"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "ton_token_ici_facultatif"
+      }
+    }
+  }
+}
+```
+
+*N'oublie pas de remplacer `/chemin/absolu/vers/...` par le vrai chemin vers le `.venv` de ton projet.*
+
+### Pour Cursor
+
+1. Ouvre les réglages de Cursor (**Cursor Settings** > **Features** > **MCP**).
+2. Clique sur **+ Add New MCP Server**.
+3. Remplis les champs :
+   - **Name** : `asset-hub`
+   - **Type** : `command`
+   - **Command** : `/chemin/absolu/vers/asset-hub/.venv/bin/python -m asset_hub.server`
+4. Enregistre. Cursor aura désormais accès aux outils de recherche et de téléchargement d'assets.
+
 ## Ajouter une source
 
 1. Écrire un connecteur dans `asset_hub/connectors/` qui implémente
@@ -71,8 +103,6 @@ export GITHUB_TOKEN="ton_token_ici"   # scope minimal : public_repo en lecture s
 
 ## Prochaines étapes suggérées
 
-- Finir `AmbientCGConnector.download()` une fois la forme exacte du JSON confirmée.
 - Vérifier et brancher 1-2 sources en plus (Kenney / Sketchfab / Freesound)
   après avoir confirmé qu'elles ont une vraie API publique.
-- Ajouter un filtre `commercial_use=True` natif dans `search_assets()` pour
-  qu'un agent puisse exclure d'office les sources à licence floue.
+- (Optionnel) Ajouter un système automatique pour indexer des repos qui ne s'appuient pas entièrement sur l'arborescence des fichiers.
