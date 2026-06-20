@@ -12,23 +12,32 @@ demande. Chaque source est un **connecteur** indépendant : en ajouter une
 nouvelle = écrire un connecteur + une ligne dans `sources.json`, sans toucher
 au reste.
 
-## Sources actuelles (Uniquement CC0, MIT, Apache)
+## Sources actuelles : plus de 104 connecteurs prêts à l'emploi (Uniquement CC0, MIT, Apache)
 
-Toutes les sources incluses listées ici autorisent formellement l'**usage commercial** (Licences permissives CC0, MIT, Apache ou équivalent "Unsplash License"). Les anciens connecteurs à licence propriétaire/personnelle (ex: Nintendo/Mojang) ont été supprimés comme tu l'as demandé.
+Toutes les sources incluses listées ici autorisent formellement l'**usage commercial** (Licences permissives CC0, MIT, Apache ou équivalent "Unsplash License"). Les anciens connecteurs à licence propriétaire/personnelle (ex: Nintendo/Mojang) ont été entièrement supprimés comme tu l'as demandé.
 
-| Source | Type | Licence | Assets |
+### Répartition par catégories :
+
+- 🟦 **Modèles 3D (25+ connecteurs)** : GLTF/OBJ/FBX de qualité optimale (ToxSam, KayKit, Quaternius d'armes, donjons, squelettes, véhicules low-poly, animaux, nature, science-fiction, etc.)
+- 🟩 **Sprites & Tilesets 2D (40+ connecteurs)** : GDQuest, pixel art Ansimuz, sprites sheets pixel-boy, packs complets Kenney (platformer, pirate, roguelike, holiday, etc.)
+- 🟨 **Icônes UI & Vectoriels (10+ connecteurs)** : Heroicons, Lucide icons, Game-Icons vectoriels (+ de 4000 icônes d'armes, sorts et items de jeu), Kenney UI / Input prompts.
+- 🟥 **Audio (10+ connecteurs)** : Des gigaoctets entier d'index audio Sonniss GDC, effets sonores retro jdngray77, mrphlip, boucles de musiques et jingles Kenney, packs audio UI KayKit ou Calinou.
+- 🔶 **Textures PBR / Polices / VFX (15+ connecteurs)** : Textures et matériel d'AmbientCG, PolyHaven HDRI, polices rétro Kenney / Monocraft et spritesheets de magie, explosions ou particules.
+
+| Source principale | Type | Licence | Assets |
 |---|---|---|---|
 | [ambientCG](https://ambientcg.com) | API REST | CC0 | Textures, HDRI, Modèles de haute qualité |
 | [Poly Haven](https://polyhaven.com) | API REST | CC0 | Textures, HDRI, Modèles de très haute qualité |
 | [ToxSam (991+ GLB)](https://github.com/ToxSam/open-source-3D-assets) | Repo GitHub | CC0 | Modèles 3D GLB optimisés (médieval, vaporwave, etc.) |
-| [KayKit (11x packs)](https://github.com/KayKit-Game-Assets) | Repo GitHub | CC0 | Modèles de jeux 3D Low Poly (Donjons, Villes, Persos, Squelettes) |
-| [Quaternius (3x packs)](https://github.com/quaternius) | Repo GitHub | CC0 | Nature stylisée, Animaux low-poly animés, Humains animés |
-| [sparklinlabs/superpowers](https://github.com/sparklinlabs/superpowers-asset-packs) | Repo GitHub | CC0 | **Des milliers** de sprites 2D, modèles 3D et sons |
-| [KenneyNL (16x packs)](https://github.com/KenneyNL) | Repo GitHub | CC0 | GLB, packs d'icônes, police pixel, audio, UI, prompt inputs |
-| [Icon Sets (Feather, Tabler, Lucide, Devicons)](https://feathericons.com/) | Repo GitHub | MIT/ISC | D'énormes collections de milliers d'icônes SVG |
-| [RPicster/Godot-vfx-textures](https://github.com/RPicster/Godot-particle-and-vfx-textures) | Repo GitHub | CC0 | Textures pour effets spéciaux et particules |
+| [KayKit (15x packs)](https://github.com/KayKit-Game-Assets) | Repo GitHub | CC0 | Personnages fantasy, mages, alimentation, cyberpunk, donjons, squelettes, UI sounds |
+| [Quaternius (10x packs)](https://github.com/quaternius) | Repo GitHub | CC0 | Nature stylisée, Animaux low-poly animés, Humains animés, Véhicules, Ferme, Espace |
+| [KenneyNL (26x packs)](https://github.com/KenneyNL) | Repo GitHub | CC0 | Sprites 2D, audio complet, UI Pack, Input prompts, Game-Icons, voxel pack, nature kit, city, dungeon |
+| [GDQuest / henriiquecampos](https://github.com/GDQuest) | Repo GitHub | CC0 | Collection de sprites de jeu propres et épurés pour le prototypage rapide |
+| [Ansimuz (Magic Cliffs, Grotto, Sunny Land)](https://github.com/ansimuz) | Repo GitHub | MIT | Énormes décors pixel art animés et soignés prêtes pour la parallaxe |
 | [SFX & Audio (Sonniss, jdngray77, mrphlip)](https://github.com/sonniss/GameAudioGDC) | Repo GitHub | CC0 | Des dizaines de gigaoctets d'effets sonores pro, UI et musique |
+| [Icon Sets (Feather, Tabler, Lucide, Game-Icons, Heroicons)](https://feathericons.com/) | Repo GitHub | MIT/ISC/CC-BY | D'énormes collections de dizaines de milliers d'icônes SVG pour HUD |
 | [madjin/awesome-cc0](https://github.com/madjin/awesome-cc0) | Repo GitHub | CC0 | Liste curatée d'assets CC0 (méta-indexation d'avatars/audio) |
+| [RPicster/Godot-vfx-textures](https://github.com/RPicster/Godot-particle-and-vfx-textures) | Repo GitHub | CC0 | Textures pour effets spéciaux et particules |
 | [godotengine/godot-demo-projects](https://github.com/godotengine/godot-demo-projects) | Repo GitHub | MIT | Grand nombre de scènes de démos Godot (gltf, png, ogg) |
 | [cx20/gltf-test](https://github.com/cx20/gltf-test) | Repo GitHub | CC0 / MIT | Énorme collection (des cents) de modèles de test GLTF |
 | [google/model-viewer](https://github.com/google/model-viewer) | Repo GitHub | Apache-2.0 | Collection de modèles de test officiels de Google |
@@ -37,6 +46,7 @@ Toutes les sources incluses listées ici autorisent formellement l'**usage comme
 | [BabylonJS/Assets](https://github.com/BabylonJS/Assets) | Repo GitHub | Apache / CC0 | Bibliothèque très riche des exemples officiels de Babylon.js |
 | [mrdoob/three.js](https://github.com/mrdoob/three.js) | Repo GitHub | MIT | Assets et modèles inclus dans les exemples de Three.js |
 | [playcanvas/engine](https://github.com/playcanvas/engine) | Repo GitHub | MIT | Modèles et sprites inclus dans les exemples de Playcanvas |
+
 
 Grâce à `GithubRepoConnector`, l'architecture te permet de puiser en live dans les fichiers de n'importe quel repo public sur GitHub comme s'il s'agissait d'une API standard. C'est 100% plug & play, ce qui veut dire que si tu veux ajouter un nouveau projet au domaine public (SVG, 3D, Audio), tu copies-colles le nom du dépôt dans `sources.json` : zero configuration, aucun compte ou clé d'API nécessaire !
 
