@@ -171,6 +171,182 @@
       "commercial_use": true,
       "attribution_required": true,
       "notes": "Assets d'exemple du moteur PlayCanvas."
+    },
+    {
+      "id": "feather-icons",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "feathericons",
+      "repo": "feather",
+      "license": "MIT",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Icônes SVG simples et magnifiques."
+    },
+    {
+      "id": "tabler-icons",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "tabler",
+      "repo": "tabler-icons",
+      "license": "MIT",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Énorme collection d'icônes SVG premium."
+    },
+    {
+      "id": "lucide-icons",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "lucide-icons",
+      "repo": "lucide",
+      "license": "ISC",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Fork communautaire de Feather."
+    },
+    {
+      "id": "devicon",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "devicons",
+      "repo": "devicon",
+      "license": "MIT",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Logos SVG de langages de programmation et d'outils."
+    },
+    {
+      "id": "kaykit-dungeon",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KayKit-Game-Assets",
+      "repo": "KayKit-Dungeon-Remastered-1.0",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Modèles 3D CC0 pour donjons."
+    },
+    {
+      "id": "kaykit-city",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KayKit-Game-Assets",
+      "repo": "KayKit-City-Builder-Bits-1.0",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Modèles 3D CC0 pour villes."
+    },
+    {
+      "id": "kaykit-restaurant",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KayKit-Game-Assets",
+      "repo": "KayKit-Restaurant-Bits-1.0",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Modèles 3D CC0 de restaurants."
+    },
+    {
+      "id": "kaykit-adventures",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KayKit-Game-Assets",
+      "repo": "KayKit-Character-Pack-Adventures-1.0",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Modèles 3D de personnages."
+    },
+    {
+      "id": "kaykit-skeletons",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KayKit-Game-Assets",
+      "repo": "KayKit-Character-Pack-Skeletons-1.0",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Modèles 3D de squelettes."
+    },
+    {
+      "id": "kaykit-prototype",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KayKit-Game-Assets",
+      "repo": "KayKit-Prototype-Bits-1.0",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Modèles 3D de prototypage."
+    },
+    {
+      "id": "kaykit-medieval",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KayKit-Game-Assets",
+      "repo": "KayKit-Medieval-Hexagon-Pack-1.0",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Modèles 3D de tuiles hexagonales médiévales."
+    },
+    {
+      "id": "kaykit-halloween",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KayKit-Game-Assets",
+      "repo": "KayKit-Halloween-Bits-1.0",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Modèles 3D d'Halloween."
+    },
+    {
+      "id": "kaykit-furniture",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KayKit-Game-Assets",
+      "repo": "KayKit-Furniture-Bits-1.0",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Modèles 3D de meubles."
+    },
+    {
+      "id": "kaykit-space",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KayKit-Game-Assets",
+      "repo": "KayKit-Space-Base-Bits-1.0",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Modèles 3D de base spatiale."
+    },
+    {
+      "id": "godot-vfx",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "RPicster",
+      "repo": "Godot-particle-and-vfx-textures",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Textures pour particules et VFX de haute qualité (CC0)."
+    },
+    {
+      "id": "flappybird-assets",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "samuelcust",
+      "repo": "flappy-bird-assets",
+      "license": "MIT",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Sprites et sons de type Flappy Bird."
     }
   ]
 }
