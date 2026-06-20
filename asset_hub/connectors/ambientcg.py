@@ -111,7 +111,10 @@ class AmbientCGConnector(SourceConnector):
         if isinstance(data, dict):
             if "foundAssets" in data and isinstance(data["foundAssets"], list):
                 return [v for v in data["foundAssets"] if isinstance(v, dict)]
-            return [v for v in data.values() if isinstance(v, dict) and isinstance(v.get("assetId"), str)]
+            return [
+                v for v in data.values()
+                if isinstance(v, dict) and isinstance(v.get("assetId"), str)
+            ]
         if isinstance(data, list):
             return [v for v in data if isinstance(v, dict) and isinstance(v.get("assetId"), str)]
         return []

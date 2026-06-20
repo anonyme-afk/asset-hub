@@ -84,11 +84,13 @@ class AssetIndex:
                 ),
             )
             cur.execute(
-                "INSERT INTO search_results (query, asset_type, source, asset_id, rank) VALUES (?,?,?,?,?)",
+                "INSERT INTO search_results "
+                "(query, asset_type, source, asset_id, rank) VALUES (?,?,?,?,?)",
                 (query, asset_type, source, r.id, rank),
             )
         cur.execute(
-            "INSERT OR REPLACE INTO searches (query, asset_type, source, cached_at) VALUES (?,?,?,?)",
+            "INSERT OR REPLACE INTO searches "
+            "(query, asset_type, source, cached_at) VALUES (?,?,?,?)",
             (query, asset_type, source, now),
         )
         self._conn.commit()

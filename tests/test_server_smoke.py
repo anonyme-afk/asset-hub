@@ -1,8 +1,11 @@
 """Test de fumée bout-en-bout du serveur MCP."""
 from __future__ import annotations
+
 import tempfile
 from pathlib import Path
+
 import pytest
+
 from asset_hub.connectors.ambientcg import AmbientCGConnector
 from asset_hub.connectors.github_repo import GithubRepoConnector
 from asset_hub.hub import AssetHub

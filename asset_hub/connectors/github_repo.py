@@ -146,7 +146,10 @@ class GithubRepoConnector(SourceConnector):
             formats=[ext.lstrip(".")],
             tags=[],
             preview_url=None,
-            source_page_url=f"https://github.com/{self.owner}/{self.repo}/blob/{self.branch or 'main'}/{path}",
+            source_page_url=(
+                f"https://github.com/{self.owner}/{self.repo}/blob/"
+                f"{self.branch or 'main'}/{path}"
+            ),
         )
 
     async def aclose(self) -> None:

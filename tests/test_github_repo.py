@@ -1,8 +1,11 @@
 """Tests d'intégration réels contre l'API GitHub."""
 from __future__ import annotations
+
 import os
-import pytest
+
 import httpx
+import pytest
+
 from asset_hub.connectors.github_repo import GithubRepoConnector
 
 OWNER = "KhronosGroup"
@@ -83,7 +86,10 @@ async def test_get_info_returns_metadata_for_known_path(connector):
 async def test_download_writes_real_file_with_nonzero_size(connector, tmp_path):
     try:
         results = await connector.search("Box", limit=20)
-        small_texture = next((r for r in results if r.asset_type == "texture"), results[0] if results else None)
+        small_texture = next(
+            (r for r in results if r.asset_type == "texture"),
+            results[0] if results else None,
+        )
         assert small_texture is not None, "précondition"
         local_path = await connector.download(small_texture.id, str(tmp_path))
         assert os.path.exists(local_path)

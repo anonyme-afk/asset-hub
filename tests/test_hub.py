@@ -1,12 +1,16 @@
 """Tests de asset_hub.hub.AssetHub."""
 from __future__ import annotations
+
 import json
 import tempfile
 from pathlib import Path
+
 import pytest
+
 from asset_hub.connectors.base import AssetResult, SourceConnector
 from asset_hub.hub import AssetHub, UnknownSourceError
 from asset_hub.index import AssetIndex
+
 
 class FakeConnector(SourceConnector):
     name = "fake"
@@ -107,7 +111,15 @@ async def test_aclose_closes_all_connectors_and_index(hub):
 
 def test_list_sources_reads_from_config(sources_config_path):
     sources_config_path.write_text(json.dumps({
-        "sources": [{"id": "ambientcg", "type": "ambientcg", "enabled": True, "license": "CC0", "commercial_use": True}]
+        "sources": [
+            {
+                "id": "ambientcg",
+                "type": "ambientcg",
+                "enabled": True,
+                "license": "CC0",
+                "commercial_use": True,
+            }
+        ]
     }))
     with tempfile.TemporaryDirectory() as tmp:
         index = AssetIndex(Path(tmp) / "index.db")
@@ -120,8 +132,20 @@ def test_list_sources_reads_from_config(sources_config_path):
 def test_load_sources_builds_connectors_from_config(sources_config_path):
     sources_config_path.write_text(json.dumps({
         "sources": [
-            {"id": "ambientcg", "type": "ambientcg", "enabled": True, "license": "CC0", "commercial_use": True},
-            {"id": "disabled-one", "type": "ambientcg", "enabled": False, "license": "CC0", "commercial_use": True},
+            {
+                "id": "ambientcg",
+                "type": "ambientcg",
+                "enabled": True,
+                "license": "CC0",
+                "commercial_use": True,
+            },
+            {
+                "id": "disabled-one",
+                "type": "ambientcg",
+                "enabled": False,
+                "license": "CC0",
+                "commercial_use": True,
+            },
         ]
     }))
     with tempfile.TemporaryDirectory() as tmp:

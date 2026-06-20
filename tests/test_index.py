@@ -10,6 +10,7 @@ import pytest
 from asset_hub.connectors.base import AssetResult
 from asset_hub.index import AssetIndex
 
+
 @pytest.fixture()
 def index():
     with tempfile.TemporaryDirectory() as tmp:

@@ -3,11 +3,12 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from .index import AssetIndex
-from .connectors.base import SourceConnector
 from .connectors.ambientcg import AmbientCGConnector
+from .connectors.base import SourceConnector
 from .connectors.github_repo import GithubRepoConnector
 from .connectors.polyhaven import PolyHavenConnector
+from .index import AssetIndex
+
 
 class UnknownSourceError(ValueError): ...
 class UnknownSourceTypeError(ValueError): ...
@@ -37,7 +38,12 @@ def _build_connector(cfg: dict) -> SourceConnector | None:
     raise ValueError(f"Type de source inconnu dans sources.json : {cfg['type']}")
 
 class AssetHub:
-    def __init__(self, sources_config_path: Path | str, downloads_dir: Path | str, index: AssetIndex | None = None):
+    def __init__(
+        self,
+        sources_config_path: Path | str,
+        downloads_dir: Path | str,
+        index: AssetIndex | None = None,
+    ):
         self.sources_config_path = Path(sources_config_path)
         self.downloads_dir = Path(downloads_dir)
         self.index = index or AssetIndex()
@@ -70,10 +76,18 @@ class AssetHub:
             for s in config
         ]
 
-    async def search_assets(self, query: str, asset_type: str | None = None, limit: int = 10, source: str | None = None, commercial_use_only: bool = False) -> list[dict]:
+    async def search_assets(
+        self,
+        query: str,
+        asset_type: str | None = None,
+        limit: int = 10,
+        source: str | None = None,
+        commercial_use_only: bool = False,
+    ) -> list[dict]:
         if source is not None and source not in self.connectors:
-            raise UnknownSourceError(f"Source inconnue: {source!r}. Sources dispo: {sorted(self.connectors)}")
-        
+            msg = f"Source inconnue: {source!r}. Sources dispo: {sorted(self.connectors)}"
+            raise UnknownSourceError(msg)
+
         targets = {source: self.connectors[source]} if source else self.connectors
         all_results: list[dict] = []
 
@@ -95,7 +109,7 @@ class AssetHub:
     async def get_asset_info(self, source: str, asset_id: str) -> dict:
         if source not in self.connectors:
             raise UnknownSourceError(f"Source inconnue: {source!r}")
-            
+
         connector = self.connectors[source]
         result = await connector.get_info(asset_id)
         return result.to_dict()
@@ -103,7 +117,7 @@ class AssetHub:
     async def download_asset(self, source: str, asset_id: str, fmt: str | None = None) -> dict:
         if source not in self.connectors:
             raise UnknownSourceError(f"Source inconnue: {source!r}")
-            
+
         connector = self.connectors[source]
         info = await connector.get_info(asset_id)
         local_path = await connector.download(asset_id, str(self.downloads_dir), fmt=fmt)
