@@ -8,8 +8,6 @@ from .connectors.base import SourceConnector
 from .connectors.ambientcg import AmbientCGConnector
 from .connectors.github_repo import GithubRepoConnector
 from .connectors.polyhaven import PolyHavenConnector
-from .connectors.unsplash import UnsplashConnector
-from .connectors.freesound import FreesoundConnector
 
 class UnknownSourceError(ValueError): ...
 class UnknownSourceTypeError(ValueError): ...

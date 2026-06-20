@@ -52,15 +52,6 @@
       "notes": "Grande bibliothèque d'assets (modèles, textures environnement) de la team Babylon.js."
     },
     {
-      "id": "unsplash",
-      "type": "unsplash",
-      "enabled": false,
-      "license": "Unsplash License",
-      "commercial_use": true,
-      "attribution_required": true,
-      "notes": "Photos et textures (haute qualite). Necessite UNSPLASH_ACCESS_KEY dans l'environnement."
-    },
-    {
       "id": "godot-demo-projects",
       "type": "github_repo",
       "enabled": true,

@@ -20,8 +20,6 @@ Toutes les sources incluses listées ici autorisent formellement l'**usage comme
 |---|---|---|---|
 | [ambientCG](https://ambientcg.com) | API REST | CC0 | Textures, HDRI, Modèles de haute qualité |
 | [Poly Haven](https://polyhaven.com) | API REST | CC0 | Textures, HDRI, Modèles de très haute qualité |
-| [Unsplash](https://unsplash.com) | API REST | Unsplash License | Photographies, images texturées de haute qualité *(Nécessite API KEY)* |
-| [Freesound](https://freesound.org) | API REST | Variable (Filtrable) | Bruitages et clips audio *(Nécessite API KEY)* |
 | [sparklinlabs/superpowers-asset-packs](https://github.com/sparklinlabs/superpowers-asset-packs) | Repo GitHub | CC0 | **Des milliers** de sprites 2D, modèles 3D et sons |
 | [KenneyNL/Starter-Kit-3D-Platformer](https://github.com/KenneyNL/Starter-Kit-3D-Platformer) | Repo GitHub | CC0 | GLB, audio pour le jeu de plateforme 3D par Kenney |
 | [KenneyNL/Starter-Kit-City-Builder](https://github.com/KenneyNL/Starter-Kit-City-Builder) | Repo GitHub | CC0 | GLB, éléments modulaires de ville, batiments par Kenney |
@@ -38,7 +36,7 @@ Toutes les sources incluses listées ici autorisent formellement l'**usage comme
 | [mrdoob/three.js](https://github.com/mrdoob/three.js) | Repo GitHub | MIT | Assets et modèles inclus dans les exemples de Three.js |
 | [playcanvas/engine](https://github.com/playcanvas/engine) | Repo GitHub | MIT | Modèles et sprites inclus dans les exemples de Playcanvas |
 
-Grâce à `GithubRepoConnector`, l'architecture te permet de puiser en live dans les fichiers de n'importe quel repo public sur GitHub comme s'il s'agissait d'une grande API. Par exemple, si tu as besoin de nouveaux assets du domaine public, il suffit d'ajouter ce repo avec 1 ligne dans le fichier `sources.json`. De plus, **Unsplash** et **Freesound** sont pré-câblés et peuvent être activés en fournissant leurs clés API dans `.env` et en passant la valeur de `enabled` à `true`.
+Grâce à `GithubRepoConnector`, l'architecture te permet de puiser en live dans les fichiers de n'importe quel repo public sur GitHub comme s'il s'agissait d'une API standard. C'est 100% plug & play, ce qui veut dire que si tu veux ajouter un nouveau projet (comme Kenney ou d'autres collections), tu copies-colles le nom du dépôt dans `sources.json` : zero configuration, aucun compte ou clé d'API nécessaire !
 
 ## État réel du code (honnêteté > optimisme)
 
