@@ -113,7 +113,7 @@ class AssetIndex:
             (query, asset_type, source),
         )
         cols = [c[0] for c in cur.description]
-        return [dict(zip(cols, row)) for row in cur.fetchall()]
+        return [dict(zip(cols, row, strict=False)) for row in cur.fetchall()]
 
     def close(self) -> None:
         self._conn.close()
