@@ -24,12 +24,6 @@ def _build_connector(cfg: dict) -> SourceConnector | None:
     if cfg["type"] == "polyhaven":
         return PolyHavenConnector()
 
-    if cfg["type"] == "unsplash":
-        return UnsplashConnector()
-
-    if cfg["type"] == "freesound":
-        return FreesoundConnector()
-
     if cfg["type"] == "github_repo":
         return GithubRepoConnector(
             owner=cfg["owner"],

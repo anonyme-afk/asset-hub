@@ -34,8 +34,18 @@ def test_list_sources_matches_config_file(hub):
     assert ambientcg_entry["license"] == "CC0"
 
 async def test_search_assets_works_end_to_end_against_real_github(hub):
+    import httpx
     hub.load_sources()
-    results = await hub.search_assets("Box", source="gltf-test-models", limit=5)
-    assert len(results) > 0
-    assert all(r["source"] == "gltf-test-models" for r in results)
-    await hub.aclose()
+    try:
+        results = await hub.search_assets("Box", source="gltf-test-models", limit=5)
+        assert len(results) > 0
+        assert all(r["source"] == "gltf-test-models" for r in results)
+    except httpx.HTTPStatusError as e:
+        if e.response.status_code in (403, 429):
+            pytest.skip(f"GitHub API rate limit exceeded: {e}")
+        else:
+            raise
+    except httpx.ConnectError as e:
+        pytest.skip(f"Network error trying to contact GitHub: {e}")
+    finally:
+        await hub.aclose()
