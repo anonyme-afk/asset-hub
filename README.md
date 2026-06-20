@@ -20,13 +20,17 @@ Toutes les sources incluses listées ici autorisent formellement l'**usage comme
 |---|---|---|---|
 | [ambientCG](https://ambientcg.com) | API REST | CC0 | Textures, HDRI, Modèles de haute qualité |
 | [Poly Haven](https://polyhaven.com) | API REST | CC0 | Textures, HDRI, Modèles de très haute qualité |
-| [KayKit (10x repos)](https://github.com/KayKit-Game-Assets) | Repo GitHub | CC0 | Modèles de jeux 3D Low Poly (Donjons, Villes, Persos) |
-| [sparklinlabs/superpowers-asset-packs](https://github.com/sparklinlabs/superpowers-asset-packs) | Repo GitHub | CC0 | **Des milliers** de sprites 2D, modèles 3D et sons |
-| [KenneyNL (6x Starter Kits)](https://github.com/KenneyNL) | Repo GitHub | CC0 | GLB, audio pour le jeux (FPS, Match3, Plateforme, Ville) |
+| [ToxSam (991+ GLB)](https://github.com/ToxSam/open-source-3D-assets) | Repo GitHub | CC0 | Modèles 3D GLB optimisés (médieval, vaporwave, etc.) |
+| [KayKit (11x packs)](https://github.com/KayKit-Game-Assets) | Repo GitHub | CC0 | Modèles de jeux 3D Low Poly (Donjons, Villes, Persos, Squelettes) |
+| [Quaternius (3x packs)](https://github.com/quaternius) | Repo GitHub | CC0 | Nature stylisée, Animaux low-poly animés, Humains animés |
+| [sparklinlabs/superpowers](https://github.com/sparklinlabs/superpowers-asset-packs) | Repo GitHub | CC0 | **Des milliers** de sprites 2D, modèles 3D et sons |
+| [KenneyNL (16x packs)](https://github.com/KenneyNL) | Repo GitHub | CC0 | GLB, packs d'icônes, police pixel, audio, UI, prompt inputs |
 | [Icon Sets (Feather, Tabler, Lucide, Devicons)](https://feathericons.com/) | Repo GitHub | MIT/ISC | D'énormes collections de milliers d'icônes SVG |
 | [RPicster/Godot-vfx-textures](https://github.com/RPicster/Godot-particle-and-vfx-textures) | Repo GitHub | CC0 | Textures pour effets spéciaux et particules |
+| [SFX & Audio (Sonniss, jdngray77, mrphlip)](https://github.com/sonniss/GameAudioGDC) | Repo GitHub | CC0 | Des dizaines de gigaoctets d'effets sonores pro, UI et musique |
+| [madjin/awesome-cc0](https://github.com/madjin/awesome-cc0) | Repo GitHub | CC0 | Liste curatée d'assets CC0 (méta-indexation d'avatars/audio) |
 | [godotengine/godot-demo-projects](https://github.com/godotengine/godot-demo-projects) | Repo GitHub | MIT | Grand nombre de scènes de démos Godot (gltf, png, ogg) |
-| [cx20/gltf-test](https://github.com/cx20/gltf-test) | Repo GitHub | CC0 / MIT | Énorme collection (des centaines) de modèles de test GLTF |
+| [cx20/gltf-test](https://github.com/cx20/gltf-test) | Repo GitHub | CC0 / MIT | Énorme collection (des cents) de modèles de test GLTF |
 | [google/model-viewer](https://github.com/google/model-viewer) | Repo GitHub | Apache-2.0 | Collection de modèles de test officiels de Google |
 | [CesiumGS/cesium](https://github.com/CesiumGS/cesium) | Repo GitHub | Apache-2.0 | Collection de base d'assets de test (avions, usines) de Cesium |
 | [pmndrs/market-assets](https://github.com/pmndrs/market-assets) | Repo GitHub | CC0 | Modèles de présentation et tutoriel React Three Fiber (GLB) |
