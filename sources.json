@@ -1,0 +1,24 @@
+{
+  "sources": [
+    {
+      "id": "ambientcg",
+      "type": "ambientcg",
+      "enabled": true,
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Textures, HDRIs, quelques modèles. API publique, pas de clé requise."
+    },
+    {
+      "id": "gltf-sample-models",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KhronosGroup",
+      "repo": "glTF-Sample-Models",
+      "license": "varies-per-model",
+      "commercial_use": false,
+      "attribution_required": true,
+      "notes": "Modèles 3D de démo/test au format glTF. Licence VARIABLE selon le modèle (voir le dossier de chaque asset) — ne pas supposer CC0 par défaut, à vérifier modèle par modèle avant usage commercial."
+    }
+  ]
+}
