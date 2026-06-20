@@ -12,23 +12,33 @@ demande. Chaque source est un **connecteur** indépendant : en ajouter une
 nouvelle = écrire un connecteur + une ligne dans `sources.json`, sans toucher
 au reste.
 
-## Sources actuelles
+## Sources actuelles (Uniquement CC0, MIT, Apache)
 
-| Source | Type | Licence | Usage commercial |
+Toutes les sources incluses listées ici autorisent formellement l'**usage commercial** (Licences permissives CC0, MIT, Apache ou équivalent "Unsplash License"). Les anciens connecteurs à licence propriétaire/personnelle (ex: Nintendo/Mojang) ont été supprimés comme tu l'as demandé.
+
+| Source | Type | Licence | Assets |
 |---|---|---|---|
-| [ambientCG](https://ambientcg.com) | API REST | CC0 | ✅ libre |
-| [Poly Haven](https://polyhaven.com) | API REST | CC0 | ✅ libre |
-| [pmndrs/market-assets](https://github.com/pmndrs/market-assets) | repo GitHub | CC0 | ✅ libre |
-| [mrdoob/three.js](https://github.com/mrdoob/three.js) | repo GitHub | MIT | ✅ libre |
-| [BabylonJS/Assets](https://github.com/BabylonJS/Assets) | repo GitHub | Apache/CC0 | ✅ libre |
-| [PokeAPI/sprites](https://github.com/PokeAPI/sprites) | repo GitHub | Fair Use | ❌ usage personnel |
-| [InventivetalentDev/minecraft-assets](https://github.com/InventivetalentDev/minecraft-assets) | repo GitHub | Mojang EULA | ❌ usage personnel |
-| [glTF-Sample-Models](https://github.com/KhronosGroup/glTF-Sample-Models) | repo GitHub | variable | ⚠️ vérifier par modèle |
-| [glTF-Sample-Assets](https://github.com/KhronosGroup/glTF-Sample-Assets) | repo GitHub | variable | ⚠️ vérifier par modèle |
-| [Unsplash](https://unsplash.com) | API REST | Unsplash | ✅ libre *(Nécessite API KEY)* |
-| [Freesound](https://freesound.org) | API REST | Variable (CC0/CC-BY/NC) | ⚠️ vérifier *(Nécessite API KEY)* |
+| [ambientCG](https://ambientcg.com) | API REST | CC0 | Textures, HDRI, Modèles de haute qualité |
+| [Poly Haven](https://polyhaven.com) | API REST | CC0 | Textures, HDRI, Modèles de très haute qualité |
+| [Unsplash](https://unsplash.com) | API REST | Unsplash License | Photographies, images texturées de haute qualité *(Nécessite API KEY)* |
+| [Freesound](https://freesound.org) | API REST | Variable (Filtrable) | Bruitages et clips audio *(Nécessite API KEY)* |
+| [sparklinlabs/superpowers-asset-packs](https://github.com/sparklinlabs/superpowers-asset-packs) | Repo GitHub | CC0 | **Des milliers** de sprites 2D, modèles 3D et sons |
+| [KenneyNL/Starter-Kit-3D-Platformer](https://github.com/KenneyNL/Starter-Kit-3D-Platformer) | Repo GitHub | CC0 | GLB, audio pour le jeu de plateforme 3D par Kenney |
+| [KenneyNL/Starter-Kit-City-Builder](https://github.com/KenneyNL/Starter-Kit-City-Builder) | Repo GitHub | CC0 | GLB, éléments modulaires de ville, batiments par Kenney |
+| [KenneyNL/Starter-Kit-FPS](https://github.com/KenneyNL/Starter-Kit-FPS) | Repo GitHub | CC0 | GLTF/GLB d'armes, décors pour FPS par Kenney |
+| [KenneyNL/Starter-Kit-Match-3](https://github.com/KenneyNL/Starter-Kit-Match-3) | Repo GitHub | CC0 | Assets dédiés aux jeux de réflexion "Match 3" par Kenney |
+| [KenneyNL/Starter-Kit-Racing](https://github.com/KenneyNL/Starter-Kit-Racing) | Repo GitHub | CC0 | Assets (voitures, routes, décors) de jeux de course par Kenney |
+| [KenneyNL/Starter-Kit-Basic-Scene](https://github.com/KenneyNL/Starter-Kit-Basic-Scene) | Repo GitHub | CC0 | Assets de décor général |
+| [godotengine/godot-demo-projects](https://github.com/godotengine/godot-demo-projects) | Repo GitHub | MIT | Grand nombre de scènes de démos Godot (gltf, png, ogg) |
+| [cx20/gltf-test](https://github.com/cx20/gltf-test) | Repo GitHub | CC0 / MIT | Énorme collection (des centaines) de modèles de test GLTF |
+| [google/model-viewer](https://github.com/google/model-viewer) | Repo GitHub | Apache-2.0 | Collection de modèles de test officiels de Google |
+| [CesiumGS/cesium](https://github.com/CesiumGS/cesium) | Repo GitHub | Apache-2.0 | Collection de base d'assets de test (avions, usines) de Cesium |
+| [pmndrs/market-assets](https://github.com/pmndrs/market-assets) | Repo GitHub | CC0 | Modèles de présentation et tutoriel React Three Fiber (GLB) |
+| [BabylonJS/Assets](https://github.com/BabylonJS/Assets) | Repo GitHub | Apache / CC0 | Bibliothèque très riche des exemples officiels de Babylon.js |
+| [mrdoob/three.js](https://github.com/mrdoob/three.js) | Repo GitHub | MIT | Assets et modèles inclus dans les exemples de Three.js |
+| [playcanvas/engine](https://github.com/playcanvas/engine) | Repo GitHub | MIT | Modèles et sprites inclus dans les exemples de Playcanvas |
 
-Grâce à `GithubRepoConnector`, tu peux brancher **n'importe quel repo public** en ajoutant simplement 1 ligne dans le fichier `sources.json`. De plus, Unsplash et Freesound sont pré-câblés et peuvent être activés en fournissant leurs clés API dans `.env` et en passant leur `enabled: true`.
+Grâce à `GithubRepoConnector`, l'architecture te permet de puiser en live dans les fichiers de n'importe quel repo public sur GitHub comme s'il s'agissait d'une grande API. Par exemple, si tu as besoin de nouveaux assets du domaine public, il suffit d'ajouter ce repo avec 1 ligne dans le fichier `sources.json`. De plus, **Unsplash** et **Freesound** sont pré-câblés et peuvent être activés en fournissant leurs clés API dans `.env` et en passant la valeur de `enabled` à `true`.
 
 ## État réel du code (honnêteté > optimisme)
 

@@ -19,28 +19,6 @@
       "notes": "Modèles 3D, Textures, HDRIs de très haute qualité. API publique sans clé (100% CC0)."
     },
     {
-      "id": "gltf-sample-models",
-      "type": "github_repo",
-      "enabled": true,
-      "owner": "KhronosGroup",
-      "repo": "glTF-Sample-Models",
-      "license": "varies-per-model",
-      "commercial_use": false,
-      "attribution_required": true,
-      "notes": "Modèles 3D de démo/test au format glTF. Licence VARIABLE selon le modèle (voir le dossier de chaque asset) — ne pas supposer CC0 par défaut, à vérifier modèle par modèle avant usage commercial."
-    },
-    {
-      "id": "gltf-sample-assets",
-      "type": "github_repo",
-      "enabled": true,
-      "owner": "KhronosGroup",
-      "repo": "glTF-Sample-Assets",
-      "license": "varies-per-model",
-      "commercial_use": false,
-      "attribution_required": true,
-      "notes": "Nouvelle bibliothèque officielle Khronos de modèles 3D glTF. Toujours vérifier la sous-licence par dossier."
-    },
-    {
       "id": "pmndrs-market",
       "type": "github_repo",
       "enabled": true,
@@ -74,28 +52,6 @@
       "notes": "Grande bibliothèque d'assets (modèles, textures environnement) de la team Babylon.js."
     },
     {
-      "id": "pokeapi-sprites",
-      "type": "github_repo",
-      "enabled": true,
-      "owner": "PokeAPI",
-      "repo": "sprites",
-      "license": "Fair Use / Nintendo",
-      "commercial_use": false,
-      "attribution_required": true,
-      "notes": "Tous les sprites de Pokémon. Usage non commercial uniquement (propriété de Nintendo)."
-    },
-    {
-      "id": "minecraft-assets",
-      "type": "github_repo",
-      "enabled": true,
-      "owner": "InventivetalentDev",
-      "repo": "minecraft-assets",
-      "license": "Mojang EULA",
-      "commercial_use": false,
-      "attribution_required": true,
-      "notes": "Assets officiels de Minecraft. Réservé à un usage personnel ou en conformité avec l'EULA Mojang."
-    },
-    {
       "id": "unsplash",
       "type": "unsplash",
       "enabled": false,
@@ -105,13 +61,125 @@
       "notes": "Photos et textures (haute qualite). Necessite UNSPLASH_ACCESS_KEY dans l'environnement."
     },
     {
-      "id": "freesound",
-      "type": "freesound",
-      "enabled": false,
-      "license": "Variable (CC0 / CC-BY / CC-NC)",
-      "commercial_use": false,
+      "id": "godot-demo-projects",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "godotengine",
+      "repo": "godot-demo-projects",
+      "license": "MIT",
+      "commercial_use": true,
       "attribution_required": true,
-      "notes": "Sons et bruitages. Necessite FREESOUND_API_KEY dans l'environnement."
+      "notes": "Modèles 3D, sons, et textures (ogg, wav, gltf, png) des démos officielles de Godot."
+    },
+    {
+      "id": "superpowers-asset-packs",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "sparklinlabs",
+      "repo": "superpowers-asset-packs",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Des milliers de sprites 2D, modèles 3D et effets sonores en CC0 (domaine public)."
+    },
+    {
+      "id": "kenney-3d-platformer",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KenneyNL",
+      "repo": "Starter-Kit-3D-Platformer",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Kit d'assets 3D pour jeux de plateforme (modèles GLB, sons) par Kenney."
+    },
+    {
+      "id": "kenney-city-builder",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KenneyNL",
+      "repo": "Starter-Kit-City-Builder",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Kit d'assets 3D pour jeux de simulation urbaine par Kenney."
+    },
+    {
+      "id": "kenney-fps",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KenneyNL",
+      "repo": "Starter-Kit-FPS",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Kit d'assets 3D pour FPS par Kenney."
+    },
+    {
+      "id": "kenney-match-3",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KenneyNL",
+      "repo": "Starter-Kit-Match-3",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Kit d'assets pour Match-3 par Kenney."
+    },
+    {
+      "id": "kenney-racing",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KenneyNL",
+      "repo": "Starter-Kit-Racing",
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Kit d'assets 3D pour jeux de course par Kenney."
+    },
+    {
+      "id": "gltf-test-models",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "cx20",
+      "repo": "gltf-test",
+      "license": "CC0 / MIT",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Énorme collection de centaines de modèles de test GLTF compilés par cx20."
+    },
+    {
+      "id": "model-viewer-assets",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "google",
+      "repo": "model-viewer",
+      "license": "Apache-2.0",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Modèles 3D officiels et test assets du projet Google Model Viewer."
+    },
+    {
+      "id": "cesium-sample-models",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "CesiumGS",
+      "repo": "cesium",
+      "license": "Apache-2.0",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Modèles de test (avions, batiments, véhicules) du moteur 3D Cesium."
+    },
+    {
+      "id": "playcanvas-engine-assets",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "playcanvas",
+      "repo": "engine",
+      "license": "MIT",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Assets d'exemple du moteur PlayCanvas."
     }
   ]
 }
