@@ -17,13 +17,13 @@ au reste.
 | Source | Type | Licence | Usage commercial |
 |---|---|---|---|
 | [ambientCG](https://ambientcg.com) | API REST | CC0 | ✅ libre |
+| [Poly Haven](https://polyhaven.com) | API REST | CC0 | ✅ libre |
 | [glTF-Sample-Models](https://github.com/KhronosGroup/glTF-Sample-Models) | repo GitHub | variable selon le modèle | ⚠️ à vérifier par modèle |
+| [glTF-Sample-Assets](https://github.com/KhronosGroup/glTF-Sample-Assets) | repo GitHub | variable selon le modèle | ⚠️ à vérifier par modèle |
 
 D'autres sources candidates existent (Kenney, Freesound, Sketchfab...) mais
 leur statut d'API actuel n'a pas été vérifié — ne pas les brancher sans
 confirmer d'abord (endpoint, rate limits, licence réelle des fichiers).
-
-Poly Haven a été volontairement retiré de la liste de sources.
 
 ## État réel du code (honnêteté > optimisme)
 
