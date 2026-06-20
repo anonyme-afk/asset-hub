@@ -7,6 +7,7 @@ from .index import AssetIndex
 from .connectors.base import SourceConnector
 from .connectors.ambientcg import AmbientCGConnector
 from .connectors.github_repo import GithubRepoConnector
+from .connectors.polyhaven import PolyHavenConnector
 
 class UnknownSourceError(ValueError): ...
 class UnknownSourceTypeError(ValueError): ...
@@ -19,6 +20,9 @@ def _build_connector(cfg: dict) -> SourceConnector | None:
 
     if cfg["type"] == "ambientcg":
         return AmbientCGConnector()
+
+    if cfg["type"] == "polyhaven":
+        return PolyHavenConnector()
 
     if cfg["type"] == "github_repo":
         return GithubRepoConnector(

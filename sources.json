@@ -10,6 +10,15 @@
       "notes": "Textures, HDRIs, quelques modèles. API publique, pas de clé requise."
     },
     {
+      "id": "polyhaven",
+      "type": "polyhaven",
+      "enabled": true,
+      "license": "CC0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Modèles 3D, Textures, HDRIs de très haute qualité. API publique sans clé (100% CC0)."
+    },
+    {
       "id": "gltf-sample-models",
       "type": "github_repo",
       "enabled": true,
@@ -19,6 +28,17 @@
       "commercial_use": false,
       "attribution_required": true,
       "notes": "Modèles 3D de démo/test au format glTF. Licence VARIABLE selon le modèle (voir le dossier de chaque asset) — ne pas supposer CC0 par défaut, à vérifier modèle par modèle avant usage commercial."
+    },
+    {
+      "id": "gltf-sample-assets",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KhronosGroup",
+      "repo": "glTF-Sample-Assets",
+      "license": "varies-per-model",
+      "commercial_use": false,
+      "attribution_required": true,
+      "notes": "Nouvelle bibliothèque officielle Khronos de modèles 3D glTF. Toujours vérifier la sous-licence par dossier."
     }
   ]
 }
