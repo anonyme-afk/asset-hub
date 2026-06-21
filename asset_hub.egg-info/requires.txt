@@ -1,7 +1,0 @@
-mcp
-httpx
-
-[dev]
-pytest
-pytest-asyncio
-ruff

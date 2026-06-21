@@ -1,2 +1,0 @@
-[console_scripts]
-asset-hub-mcp = asset_hub.server:main
