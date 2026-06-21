@@ -7,7 +7,7 @@ l'ordre. Ne saute pas d'étape.
 ## Ce que c'est
 
 Un serveur MCP qui agrège des sources d'assets gratuits/libres (3D, textures,
-icônes, sons) derrière une interface de recherche unique — 42 sources
+icônes, sons) derrière une interface de recherche unique — des sources
 vérifiées une par une contre l'API GitHub réelle (voir README.md, section
 "État réel du code"). Une fois connecté, tu auras accès aux outils
 `search_assets`, `get_asset_info`, `download_asset` et `list_sources`.
