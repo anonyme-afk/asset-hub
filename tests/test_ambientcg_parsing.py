@@ -65,7 +65,7 @@ def test_to_asset_result_parses_basic_fields():
 
     assert result.id == "Bricks102"
     assert result.name == "Bricks 102"
-    assert result.asset_type == "Material"
+    assert result.asset_type == "texture"  # Material -> texture (taxonomie interne)
     assert result.license == "CC0"
     assert result.commercial_use is True
     assert result.attribution_required is False

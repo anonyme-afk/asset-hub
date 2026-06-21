@@ -30,6 +30,10 @@ _TYPE_HINTS = {
     "model": "3DModel",
     "decal": "Decal",
 }
+# Mapping inverse : dataType renvoyé par l'API ambientCG -> asset_type interne
+# du projet (même taxonomie que github_repo.py et polyhaven.py : "texture",
+# "model", "hdri", "decal", "sound", "animation", "other").
+_TYPE_REVERSE = {v: k for k, v in _TYPE_HINTS.items()}
 
 class AmbientCGConnector(SourceConnector):
     name = "ambientcg"
@@ -187,7 +191,7 @@ class AmbientCGConnector(SourceConnector):
             id=asset_id,
             source=self.name,
             name=item.get("displayName") or asset_id,
-            asset_type=item.get("dataType", "other"),
+            asset_type=_TYPE_REVERSE.get(item.get("dataType", ""), "other"),
             license="CC0",
             commercial_use=True,
             attribution_required=False,

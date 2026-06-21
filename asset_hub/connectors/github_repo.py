@@ -35,6 +35,7 @@ ASSET_EXTENSIONS = {
     "texture": {".png", ".jpg", ".jpeg", ".tga", ".exr", ".tiff", ".webp"},
     "sound": {".wav", ".mp3", ".ogg", ".flac"},
     "animation": {".bvh", ".anim"},
+    "icon": {".svg"},
 }
 _EXT_TO_TYPE = {ext: t for t, exts in ASSET_EXTENSIONS.items() for ext in exts}
 
