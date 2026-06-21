@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ main, master ]
 
+permissions:
+  contents: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -26,4 +29,15 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        python -m pytest tests/ -v
+        python -m pytest tests/ -v --tb=long 2>&1 | tee /tmp/pytest_output.log
+    - name: Publier la sortie pytest en cas d'echec (logs Actions illisibles depuis l'exterieur)
+      if: failure()
+      run: |
+        git config user.email "ci@asset-hub"
+        git config user.name "asset-hub-ci"
+        git checkout --orphan ci-debug-output
+        git rm -rf . > /dev/null 2>&1 || true
+        cp /tmp/pytest_output.log pytest_output.log
+        git add pytest_output.log
+        git commit -m "ci debug output for ${{ github.sha }}"
+        git push origin ci-debug-output --force
