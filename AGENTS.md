@@ -26,7 +26,7 @@ n'est pas garanti non-commercial.
 
 2. **Lance le script d'installation.** Il crée le venv, installe les
    dépendances, vérifie que tout s'importe sans erreur, et modifie la config
-   MCP de Claude Desktop pour toi (détection automatique du chemin selon
+   MCP de Claude Desktop ou autre ( la plateforme sur laquelle tu es ) pour toi (détection automatique du chemin selon
    l'OS — macOS/Windows/Linux) **sans toucher aux autres serveurs MCP déjà
    configurés** :
    ```bash
