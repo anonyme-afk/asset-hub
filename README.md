@@ -91,6 +91,24 @@ export GITHUB_TOKEN="ton_token_ici"   # scope minimal : public_repo en lecture s
 
 ## Connecter le plugin à une IA (Claude Desktop, Cursor, etc.)
 
+### Méthode simple : donne juste le lien du repo à ton agent IA
+
+Si tu utilises un agent IA capable d'exécuter des commandes (Claude Code,
+Cursor, etc.), tu n'as rien à configurer à la main. Donne-lui ce repo et dis
+"connecte-toi" : il lira [`AGENTS.md`](./AGENTS.md) et exécutera
+`scripts/install.py` tout seul, qui crée le venv, installe les dépendances,
+et modifie la config MCP de Claude Desktop automatiquement — sans toucher
+aux autres serveurs MCP déjà configurés (testé : 7/7 tests sur cette
+fusion de config, y compris la non-régression sur une config existante et la
+résilience si le fichier JSON est invalide).
+
+```bash
+git clone https://github.com/anonyme-afk/asset-hub.git && cd asset-hub
+python3 scripts/install.py          # ou --dry-run pour voir sans rien écrire
+```
+
+### Méthode manuelle (si tu préfères tout faire à la main)
+
 Puisque ce projet est un serveur **MCP (Model Context Protocol)**, tu peux l'intégrer directement dans les outils compatibles.
 
 ### Pour Claude Desktop
