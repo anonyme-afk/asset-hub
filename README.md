@@ -12,7 +12,7 @@ demande. Chaque source est un **connecteur** indépendant : en ajouter une
 nouvelle = écrire un connecteur + une ligne dans `sources.json`, sans toucher
 au reste.
 
-## Sources actuelles : 42 sources vérifiées (CC0 / MIT / Apache uniquement)
+## Sources actuelles : 54 sources vérifiées (CC0 / MIT / Apache / OFL / licences variables signalées)
 
 Une session de travail précédente avait fait gonfler la liste à "104
 connecteurs". **Vérification mécanique faite contre l'API GitHub réelle (pas
@@ -43,6 +43,17 @@ optionnel (accès API structuré, livraison en bulk) pour des boîtes qui
 veulent construire un produit dessus, pas une restriction sur les assets
 eux-mêmes. Les assets Poly Haven sont CC0 au même titre qu'ambientCG :
 usage commercial libre, pas d'attribution requise.
+
+**Ajout du 21/06** : 12 nouvelles sources vérifiées une par une (existence
++ contenu réel, même méthode que ci-dessus) : sets d'icônes (Simple Icons,
+Phosphor, Iconoir, Octicons, Ionicons, Fluent UI System Icons), sets
+d'emojis (OpenMoji, Noto Emoji, Twemoji), modèles 3D (glTF-Sample-Assets
+successeur Khronos, Cesium 3D Tiles samples), et Google Fonts (nouveau type
+`font`, extensions `.ttf/.otf/.woff/.woff2`). **Attention sur Google
+Fonts** : pas de licence unique au repo — chaque famille de police a son
+propre fichier `LICENSE.txt` (majoritairement OFL-1.1, mais pas garanti) —
+`commercial_use` est donc à `false` par défaut pour cette source, à vérifier
+police par police.
 
 ## État réel du code (honnêteté > optimisme)
 

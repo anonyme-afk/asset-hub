@@ -457,6 +457,138 @@
       "commercial_use": true,
       "attribution_required": false,
       "notes": "Générateur de spritesheets de personnages LPC (Liberated Pixel Cup). Des centaines de couches (corps, vêtements, armes, armures) combinables. Assets CC-BY-SA/CC0 inclus."
+    },
+    {
+      "id": "simple-icons",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "simple-icons",
+      "repo": "simple-icons",
+      "license": "CC0-1.0",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Icones de marques en SVG, 3446 fichiers reconnus. Verifie."
+    },
+    {
+      "id": "phosphor-icons",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "phosphor-icons",
+      "repo": "core",
+      "license": "MIT",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Icones SVG, 18145 fichiers reconnus. Verifie."
+    },
+    {
+      "id": "iconoir-icons",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "iconoir-icons",
+      "repo": "iconoir",
+      "license": "MIT",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Icones SVG, 1731 fichiers reconnus. Verifie."
+    },
+    {
+      "id": "octicons",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "primer",
+      "repo": "octicons",
+      "license": "MIT",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Icones SVG (GitHub), 746 fichiers reconnus. Verifie."
+    },
+    {
+      "id": "ionicons",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "ionic-team",
+      "repo": "ionicons",
+      "license": "MIT",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Icones SVG, 1377 fichiers reconnus. Verifie."
+    },
+    {
+      "id": "fluentui-system-icons",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "microsoft",
+      "repo": "fluentui-system-icons",
+      "license": "MIT",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Icones SVG/PNG (Microsoft), 10461 fichiers reconnus. Verifie."
+    },
+    {
+      "id": "openmoji",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "hfg-gmuend",
+      "repo": "openmoji",
+      "license": "CC-BY-SA-4.0",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Emojis SVG/PNG. ShareAlike : toute oeuvre derivee doit etre sous la meme licence. 29438 fichiers reconnus. Verifie."
+    },
+    {
+      "id": "noto-emoji",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "googlefonts",
+      "repo": "noto-emoji",
+      "license": "OFL-1.1",
+      "commercial_use": true,
+      "attribution_required": false,
+      "notes": "Emojis Google Noto, SVG/PNG. 19673 fichiers reconnus. Verifie."
+    },
+    {
+      "id": "twemoji",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "jdecked",
+      "repo": "twemoji",
+      "license": "MIT",
+      "commercial_use": true,
+      "attribution_required": true,
+      "notes": "Emojis Twitter (fork maintenu post-X), SVG/PNG. 8018 fichiers reconnus. Verifie."
+    },
+    {
+      "id": "gltf-sample-assets",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "KhronosGroup",
+      "repo": "glTF-Sample-Assets",
+      "license": "varies-per-model",
+      "commercial_use": false,
+      "attribution_required": true,
+      "notes": "Successeur de glTF-Sample-Models chez Khronos. Pas de licence globale au repo (verifie via l'API license : aucune detectee) -> licence variable par modele, a checker individuellement avant usage commercial. 1565 fichiers reconnus."
+    },
+    {
+      "id": "cesium-3d-tiles-samples",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "CesiumGS",
+      "repo": "3d-tiles-samples",
+      "license": "varies-per-asset",
+      "commercial_use": false,
+      "attribution_required": true,
+      "notes": "Pas de licence globale detectee au repo -> a verifier asset par asset avant usage commercial. 117 fichiers reconnus."
+    },
+    {
+      "id": "google-fonts",
+      "type": "github_repo",
+      "enabled": true,
+      "owner": "google",
+      "repo": "fonts",
+      "license": "varies-per-font",
+      "commercial_use": false,
+      "attribution_required": true,
+      "notes": "Pas de licence unique au repo : chaque famille de police a son propre fichier LICENSE.txt (majoritairement OFL-1.1, certaines Apache-2.0/UFL). 3874 fichiers .ttf reconnus (necessite le nouveau type 'font'). Mettre commercial_use=True au cas par cas une fois la licence de la police precise verifiee."
     }
   ]
 }

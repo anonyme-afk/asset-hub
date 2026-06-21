@@ -13,7 +13,9 @@ from .index import AssetIndex
 class UnknownSourceError(ValueError): ...
 class UnknownSourceTypeError(ValueError): ...
 
-KNOWN_ASSET_TYPES = {"model", "texture", "sound", "animation", "hdri", "decal", "icon", "other"}
+KNOWN_ASSET_TYPES = {
+    "model", "texture", "sound", "animation", "hdri", "decal", "icon", "font", "other",
+}
 
 def _build_connector(cfg: dict) -> SourceConnector | None:
     if not cfg.get("enabled", True):
