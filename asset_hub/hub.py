@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 from .connectors.ambientcg import AmbientCGConnector
 from .connectors.base import SourceConnector
+from .connectors.freesound import FreesoundConnector
 from .connectors.github_repo import GithubRepoConnector
 from .connectors.polyhaven import PolyHavenConnector
 from .index import AssetIndex
@@ -26,6 +28,15 @@ def _build_connector(cfg: dict) -> SourceConnector | None:
 
     if cfg["type"] == "polyhaven":
         return PolyHavenConnector()
+
+    if cfg["type"] == "freesound":
+        if not os.environ.get("FREESOUND_API_KEY"):
+            print(
+                f"[asset-hub] source '{cfg['id']}' ignorée : FREESOUND_API_KEY non défini "
+                "(clé gratuite : https://freesound.org/apiv2/apply/)"
+            )
+            return None
+        return FreesoundConnector()
 
     if cfg["type"] == "github_repo":
         return GithubRepoConnector(

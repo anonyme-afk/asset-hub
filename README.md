@@ -1,147 +1,112 @@
 # asset-hub
 
-Serveur MCP qui agrège plusieurs sources d'assets gratuits/libres (3D, textures,
-sons, icônes) derrière une interface unique, pour qu'un agent IA puisse
-chercher et ne télécharger QUE ce dont il a besoin.
+Serveur MCP qui agrège plusieurs sources d'assets gratuits/libres (modèles
+3D, textures, sons, icônes, emojis, polices) derrière une interface de
+recherche unique — pour qu'un agent IA cherche dans tout le catalogue d'un
+coup et ne télécharge que le fichier précis dont il a besoin.
 
-## Idée
+Pas un mirroir géant : un index de métadonnées (nom, type, licence,
+formats) interrogeable en live, avec téléchargement à la demande. Chaque
+source est un **connecteur** indépendant et interchangeable — en ajouter une
+nouvelle ne touche à rien d'autre.
 
-Pas un mirroir géant de tous les assets du monde — un index de métadonnées
-(nom, type, licence, formats) interrogeable en live, avec téléchargement à la
-demande. Chaque source est un **connecteur** indépendant : en ajouter une
-nouvelle = écrire un connecteur + une ligne dans `sources.json`, sans toucher
-au reste.
-
-## Sources actuelles : 54 sources vérifiées (CC0 / MIT / Apache / OFL / licences variables signalées)
-
-Une session de travail précédente avait fait gonfler la liste à "104
-connecteurs". **Vérification mécanique faite contre l'API GitHub réelle (pas
-une relecture à l'œil) : 56 des 102 repos déclarés n'existaient tout
-simplement pas (404)**, 4 existaient mais ne contenaient aucun fichier
-d'asset exploitable par le connecteur (juste un README/index JSON, ex:
-`ToxSam/open-source-3D-assets` qui ne contient que des métadonnées pointant
-vers des assets hébergés ailleurs), et 2 étaient des doublons exacts. Tout
-ça a été retiré. Ce qui reste a été testé en vrai : recherche multi-sources
-fonctionnelle, fichiers réellement téléchargeables.
-
-| Catégorie | Sources | Détail |
-|---|---|---|
-| Textures/HDRI/Modèles (API) | ambientCG, Poly Haven | CC0, testées contre la doc officielle |
-| Modèles 3D (GitHub) | KayKit (9 packs), Quaternius-like, Kenney starter kits, glTF-Sample/test models, three.js/Babylon.js/PlayCanvas/Cesium examples, pmndrs market-assets, godot-demo-projects | CC0/MIT/Apache selon le repo |
-| Sprites 2D | Kenney match-3, GDQuest, henriiquecampos, flappybird-assets | CC0 |
-| Icônes UI (SVG) | Feather, Tabler, Lucide, Devicon, Heroicons, Game-Icons | MIT/ISC/CC-BY — nécessitait un fix (voir plus bas) |
-| Audio/VFX | Kenney UI audio, Godot VFX textures | CC0 |
-
-Liste complète et exacte (owner/repo/licence) : voir `sources.json`, c'est la
-seule source de vérité fiable — pas ce tableau qui résume.
-
-**Sur Poly Haven** : une session précédente avait noté "usage commercial =
-licence à part nécessaire". En revérifiant la page officielle
-(polyhaven.com/license), c'est faux — c'était une confusion avec une page
-"Commercial Licensing & Partnerships" séparée qui concerne un service payant
-optionnel (accès API structuré, livraison en bulk) pour des boîtes qui
-veulent construire un produit dessus, pas une restriction sur les assets
-eux-mêmes. Les assets Poly Haven sont CC0 au même titre qu'ambientCG :
-usage commercial libre, pas d'attribution requise.
-
-**Ajout du 21/06** : 12 nouvelles sources vérifiées une par une (existence
-+ contenu réel, même méthode que ci-dessus) : sets d'icônes (Simple Icons,
-Phosphor, Iconoir, Octicons, Ionicons, Fluent UI System Icons), sets
-d'emojis (OpenMoji, Noto Emoji, Twemoji), modèles 3D (glTF-Sample-Assets
-successeur Khronos, Cesium 3D Tiles samples), et Google Fonts (nouveau type
-`font`, extensions `.ttf/.otf/.woff/.woff2`). **Attention sur Google
-Fonts** : pas de licence unique au repo — chaque famille de police a son
-propre fichier `LICENSE.txt` (majoritairement OFL-1.1, mais pas garanti) —
-`commercial_use` est donc à `false` par défaut pour cette source, à vérifier
-police par police.
-
-## État réel du code (honnêteté > optimisme)
-
-- ✅ `GithubRepoConnector` : testé en vrai contre l'API GitHub (33/33 tests
-  passent avec réseau réel, y compris un téléchargement de fichier réel).
-- ✅ `AmbientCGConnector` : `search`/`get_info`/`download` réécrits à partir
-  du schéma JSON confirmé via le code source d'un client tiers réel
-  (`dphfox/ambientcg-rs`). Toujours **pas testable en live depuis ce
-  sandbox** (`ambientcg.com` hors allowlist réseau) — teste un premier appel
-  réel chez toi avant prod.
-- ✅ `PolyHavenConnector` : structurellement correct (endpoints `/assets` et
-  `/files/{id}` confirmés réels), même limite réseau que ci-dessus pour le
-  test live.
-- ✅ Index SQLite : cache des recherches (TTL 6h), testé.
-- ✅ Bugs trouvés et corrigés dans cette passe de tests :
-  - `ambientcg.py` renvoyait `asset_type="Material"` (valeur brute API) au
-    lieu de `"texture"` (taxonomie interne partagée par tous les
-    connecteurs) — cassait la cohérence inter-sources.
-  - Les repos d'icônes (Feather, Heroicons, Game-Icons) sont quasi 100% en
-    `.svg`, qui n'était pas dans les extensions reconnues → 0 résultat
-    malgré des milliers de fichiers réels. Ajout du type `icon`.
-  - `pyproject.toml` : `pip install -e .` plantait (setuptools narrivait pas
-    à choisir le package à cause du dossier `tests/` à la racine) — corrigé.
-- ✅ CI (`ruff` + `pytest`) en place, lint propre.
-- ✅ **Trou comblé** : `AmbientCGConnector` et `PolyHavenConnector` n'avaient
-  *aucun* test live (Poly Haven n'avait même aucun test du tout, même
-  synthétique). Ajout de `tests/test_ambientcg_live.py` et
-  `tests/test_polyhaven_live.py` — appels réels à `search`/`get_info`/
-  `download`. **Je ne peux pas les faire passer depuis ce sandbox**
-  (`ambientcg.com`/`polyhaven.com` hors allowlist réseau, confirmé : 403
-  avec `x-deny-reason: host_not_allowed`), mais la CI GitHub Actions a un
-  accès internet normal — regarde l'onglet *Actions* du repo pour voir s'ils
-  passent en vrai. Si l'un d'eux casse en CI, c'est un vrai signal (schéma
-  JSON qui a changé), pas un faux positif.
-- 50 tests au total : 40 tournent et passent ici (vérifié), 10 nécessitent
-  un accès réseau que ce sandbox n'a pas mais devraient passer en CI/chez toi.
-
-## Installation
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate   # ou ".venv\Scripts\activate" sous Windows
-pip install -e .
-```
-
-(`pip install -e .` plutôt que `-r requirements.txt` : ça installe aussi le
-package `asset_hub` lui-même avec son entry point `asset-hub-mcp`, requis
-pour la config MCP plus bas. Sinon t'as les dépendances mais pas le binaire.)
-
-## Utilisation en standalone
-
-```bash
-asset-hub-mcp
-# équivalent : python -m asset_hub.server
-```
-
-Pour interroger plus de repos GitHub sans te faire rate-limiter, exporte un
-token avant de lancer :
-
-```bash
-export GITHUB_TOKEN="ton_token_ici"   # scope minimal : public_repo en lecture suffit
-```
-
-## Connecter le plugin à une IA (Claude Desktop, Cursor, etc.)
-
-### Méthode simple : donne juste le lien du repo à ton agent IA
+## Démarrage rapide
 
 Si tu utilises un agent IA capable d'exécuter des commandes (Claude Code,
-Cursor, etc.), tu n'as rien à configurer à la main. Donne-lui ce repo et dis
-"connecte-toi" : il lira [`AGENTS.md`](./AGENTS.md) et exécutera
-`scripts/install.py` tout seul, qui crée le venv, installe les dépendances,
-et modifie la config MCP de Claude Desktop automatiquement — sans toucher
-aux autres serveurs MCP déjà configurés (testé : 7/7 tests sur cette
-fusion de config, y compris la non-régression sur une config existante et la
-résilience si le fichier JSON est invalide).
+Cursor, etc.), donne-lui ce repo et dis "connecte-toi" — il lira
+[`AGENTS.md`](./AGENTS.md) et fera tout seul.
+
+Sinon, à la main :
 
 ```bash
-git clone https://github.com/anonyme-afk/asset-hub.git && cd asset-hub
-python3 scripts/install.py          # ou --dry-run pour voir sans rien écrire
+git clone https://github.com/anonyme-afk/asset-hub.git
+cd asset-hub
+python3 -m venv .venv && source .venv/bin/activate   # .venv\Scripts\activate sous Windows
+pip install -e .
+asset-hub-mcp
 ```
 
-### Méthode manuelle (si tu préfères tout faire à la main)
+Puis connecte-le à ton client MCP — voir [Connecter à un client MCP](#connecter-à-un-client-mcp).
 
-Puisque ce projet est un serveur **MCP (Model Context Protocol)**, tu peux l'intégrer directement dans les outils compatibles.
+## Outils exposés
 
-### Pour Claude Desktop
+| Outil | Rôle |
+|---|---|
+| `list_sources()` | Liste les sources actives avec leur licence |
+| `search_assets(query, asset_type=None, limit=10, source=None, commercial_use_only=False)` | Cherche dans une ou toutes les sources. `asset_type` : `model`, `texture`, `sound`, `animation`, `hdri`, `decal`, `icon`, `font` |
+| `get_asset_info(source, asset_id)` | Détails complets (licence, formats) d'un asset précis |
+| `download_asset(source, asset_id, fmt=None)` | Télécharge CE fichier, rien d'autre |
 
-Ajoute la configuration suivante dans le fichier `claude_desktop_config.json` (situé généralement dans `~/.claude/` ou `%APPDATA%\Claude\` sous Windows) :
+`commercial_use_only=True` exclut d'office les sources à licence floue —
+utile par défaut si l'usage final de l'asset n'est pas garanti non-commercial.
+
+## Sources : 55, vérifiées une par une
+
+| Catégorie | Sources | Licence |
+|---|---|---|
+| Textures / HDRI / Modèles (API) | ambientCG, Poly Haven | CC0 |
+| Sons | Freesound | variable par son (lue individuellement, voir plus bas) |
+| Modèles 3D (52 repos GitHub) | KayKit, glTF-Sample-Assets, Cesium 3D Tiles, three.js/Babylon.js/PlayCanvas examples, godot-demo-projects, Kenney starter kits, sprites 2D, et plus | CC0/MIT/Apache selon le repo |
+| Icônes (SVG) | Simple Icons, Phosphor, Iconoir, Octicons, Ionicons, Fluent UI, Feather, Heroicons, Game-Icons | CC0/MIT |
+| Emojis | OpenMoji, Noto Emoji, Twemoji | CC-BY-SA / OFL / MIT |
+| Polices | Google Fonts | variable par police, voir plus bas |
+
+La liste complète exacte (owner/repo/licence/notes) vit dans
+[`sources.json`](./asset_hub/sources.json) — c'est la seule source de
+vérité fiable, ce tableau n'est qu'un résumé.
+
+**Méthode de vérification** : chaque source ajoutée passe par trois
+contrôles mécaniques (pas une relecture à l'œil) avant d'entrer dans
+`sources.json` : (1) le repo/l'API existe vraiment, (2) il contient
+réellement des fichiers que le connecteur reconnaît, (3) la licence
+déclarée correspond à ce que la source affiche officiellement. Cette
+discipline existe parce qu'une première version de ce projet avait annoncé
+"104 sources" dont 56 n'existaient pas — voir
+[Limites connues](#limites-connues) pour le détail.
+
+**Licences à vérifier au cas par cas (pas de licence globale) :**
+- **Freesound** : chaque son a sa propre licence (CC0, CC-BY, CC-BY-NC, ou
+  l'ancienne Sampling+), lue individuellement depuis l'API. Nécessite une
+  clé gratuite ([freesound.org/apiv2/apply](https://freesound.org/apiv2/apply/))
+  dans la variable d'env `FREESOUND_API_KEY` — sans elle, la source est
+  simplement ignorée au chargement (pas de crash).
+- **Google Fonts** : pas de licence unique au repo, chaque famille de
+  police a son propre `LICENSE.txt` (majoritairement OFL-1.1, non garanti).
+  `commercial_use` reste à `false` par défaut pour cette source.
+- **glTF-Sample-Assets / Cesium 3D Tiles samples** : pas de licence globale
+  détectée non plus, à vérifier modèle par modèle.
+
+**Sources étudiées mais pas branchées :**
+- **Kenney** : pas d'API publique — mais déjà couvert via les repos GitHub
+  `KenneyNL` (starter kits) déjà dans le catalogue.
+- **Sketchfab** : API réelle, mais le téléchargement exige une connexion
+  OAuth2 par utilisateur final (pas juste une clé serveur) — incompatible
+  avec un usage 100% autonome par un agent. Pas intégré pour l'instant.
+
+## Architecture
+
+```
+asset-hub/
+├── asset_hub/
+│   ├── connectors/        # un fichier par source, implémentent SourceConnector
+│   ├── sources.json       # config + licence par source (embarqué dans le package)
+│   ├── hub.py             # orchestration multi-sources, testable sans MCP
+│   ├── index.py           # cache SQLite des recherches (~/.asset-hub/index/)
+│   └── server.py          # mince adaptateur MCP au-dessus de hub.py
+├── scripts/install.py     # auto-configuration pour Claude Desktop
+├── tests/
+└── AGENTS.md              # instructions pour un agent IA qui se connecte seul
+```
+
+Chaque connecteur implémente trois méthodes : `search()`, `get_info()`,
+`download()`. Le hub route les appels, fusionne les résultats multi-sources,
+et cache les recherches en local.
+
+## Connecter à un client MCP
+
+### Claude Desktop
+
+Dans `claude_desktop_config.json` (`~/.claude/` ou `%APPDATA%\Claude\` sous Windows) :
 
 ```json
 {
@@ -150,40 +115,86 @@ Ajoute la configuration suivante dans le fichier `claude_desktop_config.json` (s
       "command": "/chemin/absolu/vers/asset-hub/.venv/bin/asset-hub-mcp",
       "args": [],
       "env": {
-        "GITHUB_TOKEN": "ton_token_ici_facultatif"
+        "GITHUB_TOKEN": "facultatif, evite le rate-limit GitHub",
+        "FREESOUND_API_KEY": "facultatif, active la source Freesound"
       }
     }
   }
 }
 ```
 
-*Remplace `/chemin/absolu/vers/...` par le vrai chemin vers le `.venv` de
-ton projet. Sous Windows, le binaire est dans
-`.venv\Scripts\asset-hub-mcp.exe`. Note : on pointe directement sur le
-binaire `asset-hub-mcp` (installé via `pip install -e .`, pas juste
-`pip install -r requirements.txt`) plutôt que sur `python -m
-asset_hub.server` — ce dernier ne marche que si le process est lancé avec
-le bon `cwd`, ce que les apps comme Claude Desktop ne garantissent pas.*
+Sous Windows, le binaire est dans `.venv\Scripts\asset-hub-mcp.exe`. On
+pointe directement sur ce binaire (installé via `pip install -e .`) plutôt
+que sur `python -m asset_hub.server` : cette dernière forme ne marche que
+si le process est lancé avec le bon `cwd`, ce que Claude Desktop ne
+garantit pas — bug réel rencontré et corrigé pendant le développement.
 
-### Pour Cursor
+`scripts/install.py` fait cette configuration automatiquement (détection
+du fichier de config, fusion sans écraser les autres serveurs MCP,
+sauvegarde avant écriture) :
 
-1. Ouvre les réglages de Cursor (**Cursor Settings** > **Features** > **MCP**).
-2. Clique sur **+ Add New MCP Server**.
-3. Remplis les champs :
-   - **Name** : `asset-hub`
-   - **Type** : `command`
-   - **Command** : `/chemin/absolu/vers/asset-hub/.venv/bin/asset-hub-mcp`
-4. Enregistre. Cursor aura désormais accès aux outils de recherche et de téléchargement d'assets.
+```bash
+python3 scripts/install.py            # ou --dry-run pour voir sans rien écrire
+```
+
+### Cursor
+
+**Cursor Settings → Features → MCP → + Add New MCP Server**
+- Name : `asset-hub`
+- Type : `command`
+- Command : `/chemin/absolu/vers/asset-hub/.venv/bin/asset-hub-mcp`
 
 ## Ajouter une source
 
-1. Écrire un connecteur dans `asset_hub/connectors/` qui implémente
+1. Écris un connecteur dans `asset_hub/connectors/` qui implémente
    `SourceConnector` (`search`, `get_info`, `download`).
-2. Ajouter une entrée dans `sources.json` avec la licence réelle de la
-   source — ne jamais supposer "gratuit = libre de droits commercial".
+2. Ajoute une entrée dans `asset_hub/sources.json` avec la **licence
+   réelle** de la source, vérifiée — jamais supposée. "Gratuit" ne veut pas
+   dire "libre de droits commercial".
+3. Si la source nécessite une clé API, fais en sorte que `hub.py` la
+   *saute proprement* quand la clé manque plutôt que de planter (voir le
+   connecteur Freesound pour le pattern).
+
+## Tests
+
+```bash
+pip install -e ".[dev]"
+ruff check .
+pytest tests/
+```
+
+45 tests tournent sans dépendance réseau bloquée et passent de façon
+fiable. Deux fichiers supplémentaires (`test_ambientcg_live.py`,
+`test_polyhaven_live.py`) font de vrais appels réseau à ambientCG/Poly
+Haven — ils ne s'exécutent pas depuis l'environnement où ce projet a été
+développé (allowlist réseau restreinte) mais tournent normalement en CI et
+sur une machine avec accès internet standard.
+
+## Limites connues
+
+- **Tests live dépendants du réseau** : `test_ambientcg_live.py` et
+  `test_polyhaven_live.py` appellent de vraies API externes — une panne ou
+  un hoquet ponctuel côté ambientCG/Poly Haven peut faire échouer la CI
+  sans que ce soit un bug du code (déjà observé une fois : échec, puis
+  succès au run suivant sur le même commit).
+- **Freesound non testé en conditions réelles** : la logique de parsing de
+  licence est testée (unitaire), mais `search`/`get_info`/`download`
+  n'ont jamais été exercés contre la vraie API (pas de clé disponible
+  pendant le développement).
+- **Historique d'audit** : une version antérieure de ce projet avait
+  annoncé 104 sources GitHub ; un audit mécanique (existence + contenu
+  réel vérifiés via l'API GitHub) a trouvé 56 repos inexistants, 4 vides,
+  et 2 doublons — tous retirés. Le chiffre actuel (55 sources, 52 repos
+  GitHub) reflète ce qui a été vérifié, pas ce qui a été annoncé.
+- **Pas d'indexation des repos "manifeste"** : certains repos décrivent
+  des assets via un JSON qui pointe vers un hébergement externe plutôt que
+  de contenir les fichiers eux-mêmes (ex. `ToxSam/open-source-3D-assets`,
+  retiré du catalogue pour cette raison). Un connecteur dédié pour ce
+  pattern n'existe pas encore.
 
 ## Prochaines étapes suggérées
 
-- Vérifier et brancher 1-2 sources en plus (Kenney / Sketchfab / Freesound)
-  après avoir confirmé qu'elles ont une vraie API publique.
-- (Optionnel) Ajouter un système automatique pour indexer des repos qui ne s'appuient pas entièrement sur l'arborescence des fichiers.
+- Tester Freesound avec une vraie clé API et ajouter un test live.
+- Connecteur dédié pour les repos "manifeste JSON" (cf. limite ci-dessus).
+- Optimiser `PolyHavenConnector._get_all_assets()` pour filtrer côté API
+  (`type=`) plutôt que de tout récupérer puis filtrer en Python.

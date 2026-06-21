@@ -589,6 +589,15 @@
       "commercial_use": false,
       "attribution_required": true,
       "notes": "Pas de licence unique au repo : chaque famille de police a son propre fichier LICENSE.txt (majoritairement OFL-1.1, certaines Apache-2.0/UFL). 3874 fichiers .ttf reconnus (necessite le nouveau type 'font'). Mettre commercial_use=True au cas par cas une fois la licence de la police precise verifiee."
+    },
+    {
+      "id": "freesound",
+      "type": "freesound",
+      "enabled": true,
+      "license": "varies-per-sound",
+      "commercial_use": false,
+      "attribution_required": true,
+      "notes": "Sons CC. Licence VARIABLE par son (CC0/CC-BY/CC-BY-NC/Sampling+), lue individuellement depuis l API, pas une licence globale. Necessite FREESOUND_API_KEY (gratuit) sinon source ignoree au chargement, pas de crash. Telecharge la preview HQ (mp3/ogg), pas le fichier original (qui necessite OAuth2 utilisateur)."
     }
   ]
 }
