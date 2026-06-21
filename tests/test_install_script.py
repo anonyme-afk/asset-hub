@@ -24,14 +24,16 @@ build_entry = install_script.build_entry
 def test_creates_config_file_if_missing():
     with tempfile.TemporaryDirectory() as tmp:
         config_path = Path(tmp) / "nested" / "claude_desktop_config.json"
-        entry = build_entry(Path("/fake/python"))
+        entry = build_entry()
 
         wrote = merge_config(config_path, entry, "asset-hub", dry_run=False)
 
         assert wrote is True
         assert config_path.exists()
         data = json.loads(config_path.read_text())
-        assert data["mcpServers"]["asset-hub"]["command"] == "/fake/python"
+        assert data["mcpServers"]["asset-hub"]["command"] == str(
+            install_script._entry_point_path()
+        )
 
 
 def test_preserves_existing_servers_and_other_keys():
@@ -45,7 +47,7 @@ def test_preserves_existing_servers_and_other_keys():
                 }
             )
         )
-        entry = build_entry(Path("/fake/python"))
+        entry = build_entry()
 
         merge_config(config_path, entry, "asset-hub", dry_run=False)
 
@@ -58,7 +60,7 @@ def test_preserves_existing_servers_and_other_keys():
 def test_rerun_is_idempotent_not_duplicated():
     with tempfile.TemporaryDirectory() as tmp:
         config_path = Path(tmp) / "config.json"
-        entry = build_entry(Path("/fake/python"))
+        entry = build_entry()
 
         merge_config(config_path, entry, "asset-hub", dry_run=False)
         merge_config(config_path, entry, "asset-hub", dry_run=False)
@@ -72,7 +74,7 @@ def test_invalid_json_leaves_file_untouched():
         config_path = Path(tmp) / "config.json"
         original_content = "{ceci n'est pas du json valide"
         config_path.write_text(original_content)
-        entry = build_entry(Path("/fake/python"))
+        entry = build_entry()
 
         wrote = merge_config(config_path, entry, "asset-hub", dry_run=False)
 
@@ -83,7 +85,7 @@ def test_invalid_json_leaves_file_untouched():
 def test_dry_run_does_not_write_anything():
     with tempfile.TemporaryDirectory() as tmp:
         config_path = Path(tmp) / "config.json"
-        entry = build_entry(Path("/fake/python"))
+        entry = build_entry()
 
         merge_config(config_path, entry, "asset-hub", dry_run=True)
 
@@ -94,7 +96,7 @@ def test_creates_backup_before_overwriting_existing_file():
     with tempfile.TemporaryDirectory() as tmp:
         config_path = Path(tmp) / "config.json"
         config_path.write_text(json.dumps({"mcpServers": {}}))
-        entry = build_entry(Path("/fake/python"))
+        entry = build_entry()
 
         merge_config(config_path, entry, "asset-hub", dry_run=False)
 

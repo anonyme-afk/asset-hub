@@ -7,9 +7,14 @@ l'ordre. Ne saute pas d'étape.
 ## Ce que c'est
 
 Un serveur MCP qui agrège des sources d'assets gratuits/libres (3D, textures,
-icônes, sons) derrière une interface de recherche unique. Une fois connecté,
-tu auras accès aux outils `search_assets`, `get_asset_info`, `download_asset`
-et `list_sources`.
+icônes, sons) derrière une interface de recherche unique — 42 sources
+vérifiées une par une contre l'API GitHub réelle (voir README.md, section
+"État réel du code"). Une fois connecté, tu auras accès aux outils
+`search_assets`, `get_asset_info`, `download_asset` et `list_sources`.
+
+`search_assets` accepte `commercial_use_only=true` pour exclure d'office les
+sources à licence floue — utile par défaut si l'usage final de l'asset
+n'est pas garanti non-commercial.
 
 ## Étapes à exécuter
 
@@ -66,3 +71,7 @@ et `list_sources`.
 - Ne réécris jamais le fichier de config à la main avec un editeur de texte
   bête — utilise `scripts/install.py`, qui préserve les autres entrées.
 - Ne committe jamais de token dans `sources.json` ou ailleurs dans le repo.
+- Si une recherche ne renvoie rien, dis-le — n'invente jamais un résultat,
+  une licence ou une URL plausibles. C'est exactement le problème qu'a eu
+  ce projet une fois (104 sources annoncées, 56 inexistantes) et que ce
+  fichier essaie d'éviter que tu reproduises.

@@ -1,3 +1,18 @@
+Metadata-Version: 2.4
+Name: asset-hub
+Version: 0.1.0
+Summary: Serveur MCP pour agréger diverses sources d'assets 3D/2D
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: mcp
+Requires-Dist: httpx
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-asyncio; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Dynamic: license-file
+
 # asset-hub
 
 Serveur MCP qui agrège plusieurs sources d'assets gratuits/libres (3D, textures,

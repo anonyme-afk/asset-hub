@@ -12,7 +12,7 @@ from asset_hub.hub import AssetHub
 from asset_hub.index import AssetIndex
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-REAL_SOURCES_CONFIG = REPO_ROOT / "sources.json"
+REAL_SOURCES_CONFIG = REPO_ROOT / "asset_hub" / "sources.json"
 
 @pytest.fixture()
 def hub():

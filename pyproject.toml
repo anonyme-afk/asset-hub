@@ -9,6 +9,9 @@ dependencies = [
     "httpx",
 ]
 
+[project.scripts]
+asset-hub-mcp = "asset_hub.server:main"
+
 [project.optional-dependencies]
 dev = [
     "pytest",
@@ -22,6 +25,9 @@ asyncio_default_fixture_loop_scope = "function"
 
 [tool.setuptools.packages.find]
 include = ["asset_hub*"]
+
+[tool.setuptools.package-data]
+asset_hub = ["sources.json"]
 
 [tool.ruff]
 line-length = 100

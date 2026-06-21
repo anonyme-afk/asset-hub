@@ -47,10 +47,10 @@ def setup_venv() -> Path:
     else:
         print(f"[1/4] venv déjà présent ({VENV_DIR}), réutilisé.")
 
-    print("[2/4] Installation des dépendances...")
+    print("[2/4] Installation du package asset-hub (mode editable)...")
     subprocess.run([str(py), "-m", "pip", "install", "-q", "--upgrade", "pip"], check=True)
     subprocess.run(
-        [str(py), "-m", "pip", "install", "-q", "-r", str(REPO_ROOT / "requirements.txt")],
+        [str(py), "-m", "pip", "install", "-q", "-e", str(REPO_ROOT)],
         check=True,
     )
     return py
@@ -72,10 +72,22 @@ def default_claude_desktop_config_path() -> Path:
     return Path.home() / ".config" / "Claude" / "claude_desktop_config.json"  # Linux
 
 
-def build_entry(python_path: Path) -> dict:
+def _entry_point_path() -> Path:
+    if platform.system() == "Windows":
+        return VENV_DIR / "Scripts" / "asset-hub-mcp.exe"
+    return VENV_DIR / "bin" / "asset-hub-mcp"
+
+
+def build_entry() -> dict:
+    # On pointe directement sur le binaire installé par pip (entry point
+    # `asset-hub-mcp` défini dans pyproject.toml), PAS sur
+    # "python -m asset_hub.server" : ce dernier ne marche que si le process
+    # est lancé avec cwd=REPO_ROOT, ce que Claude Desktop ne garantit pas.
+    # Vérifié en conditions réelles : "-m asset_hub.server" sans le bon cwd
+    # plante avec ModuleNotFoundError, l'entry point non.
     return {
-        "command": str(python_path),
-        "args": ["-m", "asset_hub.server"],
+        "command": str(_entry_point_path()),
+        "args": [],
         "env": {},
     }
 
@@ -153,11 +165,17 @@ def main() -> None:
     else:
         py = setup_venv()
 
-    print("[3/4] Vérification que le serveur s'importe sans erreur...")
-    subprocess.run([str(py), "-c", "import asset_hub.server"], check=True, cwd=str(REPO_ROOT))
+    print("[3/4] Vérification que le serveur s'importe sans erreur (sans dépendre du cwd)...")
+    # Important : PAS de cwd=REPO_ROOT ici, exprès — c'est exactement ce que
+    # fera Claude Desktop, qui ne connaît pas REPO_ROOT.
+    subprocess.run([str(py), "-c", "import asset_hub.server"], check=True, cwd=str(Path.home()))
+    entry_point = _entry_point_path()
+    if not entry_point.exists():
+        print(f"Erreur : entry point introuvable à {entry_point}", file=sys.stderr)
+        sys.exit(1)
 
     config_path = args.config_path or default_claude_desktop_config_path()
-    entry = build_entry(py)
+    entry = build_entry()
     wrote = merge_config(config_path, entry, args.server_id, args.dry_run)
 
     if wrote and not args.dry_run:
