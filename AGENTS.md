@@ -7,7 +7,7 @@ l'ordre. Ne saute pas d'étape.
 ## Ce que c'est
 
 Un serveur MCP qui agrège des sources d'assets gratuits/libres (3D, textures,
-icônes, sons) derrière une interface de recherche unique — 42 sources
+icônes, sons) derrière une interface de recherche unique — des sources
 vérifiées une par une contre l'API GitHub réelle (voir README.md, section
 "État réel du code"). Une fois connecté, tu auras accès aux outils
 `search_assets`, `get_asset_info`, `download_asset` et `list_sources`.
@@ -26,7 +26,7 @@ n'est pas garanti non-commercial.
 
 2. **Lance le script d'installation.** Il crée le venv, installe les
    dépendances, vérifie que tout s'importe sans erreur, et modifie la config
-   MCP de Claude Desktop pour toi (détection automatique du chemin selon
+   MCP de Claude Desktop ou autre ( la plateforme sur laquelle tu es ) pour toi (détection automatique du chemin selon
    l'OS — macOS/Windows/Linux) **sans toucher aux autres serveurs MCP déjà
    configurés** :
    ```bash
