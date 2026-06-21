@@ -77,7 +77,19 @@ police par police.
     malgré des milliers de fichiers réels. Ajout du type `icon`.
   - `pyproject.toml` : `pip install -e .` plantait (setuptools narrivait pas
     à choisir le package à cause du dossier `tests/` à la racine) — corrigé.
-- ✅ CI (`ruff` + `pytest`) en place, lint propre, 33/33 tests passent.
+- ✅ CI (`ruff` + `pytest`) en place, lint propre.
+- ✅ **Trou comblé** : `AmbientCGConnector` et `PolyHavenConnector` n'avaient
+  *aucun* test live (Poly Haven n'avait même aucun test du tout, même
+  synthétique). Ajout de `tests/test_ambientcg_live.py` et
+  `tests/test_polyhaven_live.py` — appels réels à `search`/`get_info`/
+  `download`. **Je ne peux pas les faire passer depuis ce sandbox**
+  (`ambientcg.com`/`polyhaven.com` hors allowlist réseau, confirmé : 403
+  avec `x-deny-reason: host_not_allowed`), mais la CI GitHub Actions a un
+  accès internet normal — regarde l'onglet *Actions* du repo pour voir s'ils
+  passent en vrai. Si l'un d'eux casse en CI, c'est un vrai signal (schéma
+  JSON qui a changé), pas un faux positif.
+- 50 tests au total : 40 tournent et passent ici (vérifié), 10 nécessitent
+  un accès réseau que ce sandbox n'a pas mais devraient passer en CI/chez toi.
 
 ## Installation
 
