@@ -21,9 +21,9 @@ from .base import AssetResult, SourceConnector
 API_BASE = "https://api.polyhaven.com"
 
 _TYPE_MAPPING = {
-    "hdris": "hdri",
-    "textures": "texture",
-    "models": "model",
+    0: "hdri",
+    1: "texture",
+    2: "model",
 }
 _REVERSE_TYPE_MAPPING = {v: k for k, v in _TYPE_MAPPING.items()}
 
@@ -55,9 +55,9 @@ class PolyHavenConnector(SourceConnector):
 
         results: list[AssetResult] = []
         for asset_id, item in assets.items():
-            ph_type = str(item.get("type", ""))
+            ph_type = item.get("type")
 
-            if target_ph_type and ph_type != target_ph_type:
+            if target_ph_type is not None and ph_type != target_ph_type:
                 continue
 
             name = item.get("name", asset_id)
